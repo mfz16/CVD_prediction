@@ -4,7 +4,7 @@ import pandas as pd
 import joblib
 
 #from utils import wrangle
-import pickle
+#import pickle
 import sys
 #import path
 import os
@@ -19,7 +19,8 @@ path_to_model = os.path.join("./CVD/stacking_model.pkl")
 
 
 with open(path_to_model, 'rb') as file:
-    model = pickle.load(file)
+    #model = pickle.load(file)
+    model=joblib.load(file)
 
 
 # Function to make predictions
