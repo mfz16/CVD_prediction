@@ -6,12 +6,12 @@ import joblib
 #from utils import wrangle
 import pickle
 import sys
-import path
+#import path
 import os
 
 
-dir = path.Path(__file__).abspath()
-sys.path.append(dir.parent.parent)
+#dir = path.Path(__file__).abspath()
+#sys.path.append(dir.parent.parent)
 
 # load model
 #path_to_model = './CVD/stacking_model.pkl'
