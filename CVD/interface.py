@@ -3,6 +3,23 @@ import numpy as np
 import pandas as pd
 import joblib
 
+#from utils import wrangle
+import pickle
+import sys
+import path
+
+
+dir = path.Path(__file__).abspath()
+sys.path.append(dir.parent.parent)
+
+# load model
+path_to_model = './CVD/stacking_model.pkl'
+
+
+with open(path_to_model, 'rb') as file:
+    model = pickle.load(file)
+
+
 # Function to make predictions
 def predict(model, features):
     prediction = model.predict(features)
@@ -52,7 +69,7 @@ def main():
     })
 
     # Load the trained model
-    model = joblib.load('CVD\stacking_model.pkl')
+    #model = joblib.load('CVD\stacking_model.pkl')
 
     # Make prediction
     if st.button("Predict"):
