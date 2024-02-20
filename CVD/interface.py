@@ -7,13 +7,15 @@ import joblib
 import pickle
 import sys
 import path
+import os
 
 
 dir = path.Path(__file__).abspath()
 sys.path.append(dir.parent.parent)
 
 # load model
-path_to_model = './CVD/stacking_model.pkl'
+#path_to_model = './CVD/stacking_model.pkl'
+path_to_model = os.path.join("./CVD/stacking_model.pkl")
 
 
 with open(path_to_model, 'rb') as file:
