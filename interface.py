@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import joblib
 import sklearn
+from sklearn.preprocessing import MinMaxScaler
 
 #from utils import wrangle
 #import pickle
@@ -17,6 +18,8 @@ import os
 # load model
 #path_to_model = './CVD/stacking_model.pkl'
 path_to_model = os.path.join("./CVD/stacking_model.pkl")
+path_to_scaler=os.path.join("./CVD/feature_scaler_without_target.pkl")
+scaler=joblib.load(path_to_scaler)
 
 
 with open(path_to_model, 'rb') as file:
@@ -74,10 +77,19 @@ def main():
 
     # Load the trained model
     #model = joblib.load('CVD\stacking_model.pkl')
+     # Normalize features
+    #scaler = MinMaxScaler()
+    features_subset = features[['age', 'sex', 'chest pain type', 'resting bp s', 'cholesterol', 'fasting blood sugar', 'resting ecg', 'max heart rate', 'exercise angina', 'oldpeak', 'ST slope']]
 
+# Normalize features
+    scaled_features = scaler.transform(features_subset)
+    #scaled_features = scaler.transform(features)
+    print(features)
+    print(scaled_features)
     # Make prediction
     if st.button("Predict"):
-        prediction = predict(model, features)
+        prediction = predict(model, scaled_features)
+        print(prediction)
         if prediction[0] == 0:
             st.write("The patient is predicted not to have cardiovascular disease.")
         else:
